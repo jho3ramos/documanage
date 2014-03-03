@@ -1,0 +1,85 @@
+﻿<UserControl x:Name="UserControl" x:Class="SC.Shell.Views.AdminView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+ xmlns:Inf="clr-namespace:SC.Infrastructure;assembly=SC.Infrastructure" 
+    		 xmlns:Regions="clr-namespace:Microsoft.Practices.Prism.Regions;assembly=Microsoft.Practices.Prism" 
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300">
+    <UserControl.RenderTransform>
+        <TransformGroup>
+            <ScaleTransform/>
+            <SkewTransform/>
+            <RotateTransform/>
+            <TranslateTransform/>
+        </TransformGroup>
+    </UserControl.RenderTransform>
+    <UserControl.Triggers>
+        <EventTrigger RoutedEvent="FrameworkElement.Loaded">
+            <BeginStoryboard x:Name="OnLoaded_BeginStoryboard" Storyboard="{StaticResource OnLoaded}"/>
+        </EventTrigger>
+    </UserControl.Triggers>
+    <Grid x:Name="ClientArea" Grid.Row="1">
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+
+        <!-- Grid Layout -->
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition x:Name="NavigationColumn" Width="*" MinWidth="100" MaxWidth="250"/>
+            <ColumnDefinition x:Name="WorkspaceColumn" Width="4*"/>
+        </Grid.ColumnDefinitions>
+        <!--<GridSplitter HorizontalAlignment="Left" Width="5" Grid.Column="1" Style="{DynamicResource GridSplitterStyle}">
+            <GridSplitter.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#FF125F22" Offset="0"/>
+                    <GradientStop Offset="1"/>
+                </LinearGradientBrush>
+            </GridSplitter.Background>
+        </GridSplitter>-->
+
+        <!-- Navigation Pane Grid -->
+
+        <!-- Navigation Pane Grid -->
+
+        <Border MaxWidth="300" MinWidth="50" Margin="0" Background="#0CFFFFFF" BorderThickness="0,0,2,0">
+            <Grid x:Name="NavigationPane">
+
+                <!-- Task Button Region -->
+                <!-- Grid Layout -->
+                <Grid.RowDefinitions>
+                    <RowDefinition x:Name="Navigator"/>
+                    <RowDefinition x:Name="TaskButtons" Height="Auto" MinHeight="110"/>
+                </Grid.RowDefinitions>
+
+                <!-- Navigator Region -->
+                <ContentControl x:Name="NavigatorRegion" Grid.Row="0" 
+    				Regions:RegionManager.RegionName="{x:Static Inf:RegionNames.NavigationRegion}" Margin="10,25,0,10" VerticalAlignment="Top" FontWeight="Thin" FontSize="16" />
+                <StackPanel x:Name="stackPanel" HorizontalAlignment="Stretch" Grid.Row="1" Margin="10,0,0,5">
+                    <Border  Margin="0,0,0,2" BorderThickness="0,1,0,0" BorderBrush="#FF0C6123"  >
+                        <ItemsControl  x:Name="TaskButtonRegion" 
+    						Regions:RegionManager.RegionName="{x:Static Inf:RegionNames.TaskButtonRegion}" UseLayoutRounding="False" IsEnabled="True" RenderTransformOrigin="0.5,0.5" Margin="0,5,0,0"  />
+                    </Border>
+                </StackPanel>
+
+            </Grid>
+
+        </Border>
+
+        <ContentControl x:Name="MainRegion" 
+                                Grid.Column="1" Regions:RegionManager.RegionName="{x:Static Inf:RegionNames.MainRegion}" 
+                                Margin="10,0" RenderTransformOrigin="0.5,0.5" >
+            <ContentControl.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </ContentControl.RenderTransform>
+
+        </ContentControl>
+
+    </Grid>
+</UserControl>
