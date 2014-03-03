@@ -1,0 +1,165 @@
+﻿<UserControl x:Name="UserControl" x:Class="Modules.Members.Views.MemberAddView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+              d:DesignHeight="800" d:DesignWidth="800" FontWeight="Thin" FontSize="16" Foreground="White">
+    <UserControl.Resources>
+        <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
+    </UserControl.Resources>
+    <UserControl.RenderTransform>
+        <TransformGroup>
+            <ScaleTransform/>
+            <SkewTransform/>
+            <RotateTransform/>
+            <TranslateTransform/>
+        </TransformGroup>
+    </UserControl.RenderTransform>
+    <UserControl.Triggers>
+        <EventTrigger RoutedEvent="FrameworkElement.Loaded">
+            <BeginStoryboard x:Name="OnLoaded_BeginStoryboard" Storyboard="{StaticResource OnLoaded}"/>
+        </EventTrigger>
+    </UserControl.Triggers>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"/>
+            <RowDefinition/>
+            <RowDefinition Height="100"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="50"/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition Width="50"/>
+        </Grid.ColumnDefinitions>
+        <!--<StackPanel Grid.ColumnSpan="2" Orientation="Horizontal" Margin="0">
+            <Button Content="back" Width="64" Height="64" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="20,0,0,0"/>
+        </StackPanel>-->
+
+        <ScrollViewer Grid.Column="1" Grid.Row="1" Margin="0,0,10,0" Grid.IsSharedSizeScope="True" VerticalScrollBarVisibility="Auto">
+            <StackPanel Margin="0,0,5,0">
+
+                <TextBlock TextWrapping="Wrap" Text="Member Details" Margin="0,0,0,15" FontSize="21.333"/>
+
+                <Border>
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition Width="2*"/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock TextWrapping="Wrap" Text="First Name" Margin="0" VerticalAlignment="Center"/>
+                        <TextBlock TextWrapping="Wrap" Text="Middle Name" Grid.Row="1" VerticalAlignment="Center"/>
+                        <TextBlock TextWrapping="Wrap" Text="Last Name" Grid.Row="2" VerticalAlignment="Center"/>
+                        <TextBlock TextWrapping="Wrap" Text="Gender" Grid.Row="3" VerticalAlignment="Center"/>
+                        <TextBlock TextWrapping="Wrap" Text="Civil Status" Grid.Row="4" VerticalAlignment="Center"/>
+                        <TextBlock TextWrapping="Wrap" Text="Date of Birth" Grid.Row="5" VerticalAlignment="Center"/>
+                        <TextBlock TextWrapping="Wrap" Text="Place of Birth" Grid.Row="6" VerticalAlignment="Center"/>
+                        <TextBox TextWrapping="Wrap" Grid.Column="1" Margin="0,0,0,15" Padding="3" Text="{Binding memberDetail.firstname, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                        <TextBox TextWrapping="Wrap" Grid.Column="1" Grid.Row="1" Margin="0,0,0,15" Padding="3" Text="{Binding memberDetail.middlename, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                        <TextBox TextWrapping="Wrap" Grid.Column="1" Grid.Row="2" Margin="0,0,0,15" Padding="3" Text="{Binding memberDetail.lastname, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                        <ComboBox Grid.Column="1" Grid.Row="3" VerticalAlignment="Center" Margin="0,0,0,15" SelectedValue="{Binding memberDetail.gender, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" ItemsSource="{Binding gender}" />
+                        <ComboBox Grid.Column="1" Grid.Row="4" VerticalAlignment="Center" Margin="0,0,0,15" SelectedValue="{Binding memberDetail.civilstatus, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" ItemsSource="{Binding civilStatus}" />
+                        <DatePicker Grid.Column="1" Grid.Row="5" VerticalAlignment="Center" Margin="0,0,0,15" SelectedDate="{Binding memberDetail.dob, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                        <TextBox TextWrapping="Wrap" Grid.Column="1" Grid.Row="6" Margin="0,0,0,15" Padding="3" Text="{Binding memberInfo.birthplace, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                    </Grid>
+
+                </Border>
+
+                <Border Margin="0,1,0,0">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition Width="2*"/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock TextWrapping="Wrap" Text="Address" Margin="0" VerticalAlignment="Center"/>
+                        <TextBlock TextWrapping="Wrap" Text="Province" Grid.Row="1" VerticalAlignment="Center"/>
+                        <TextBlock TextWrapping="Wrap" Text="Town" Grid.Row="2" VerticalAlignment="Center"/>
+                        <TextBlock TextWrapping="Wrap" Text="Barangay" Grid.Row="3" VerticalAlignment="Center"/>
+                        <TextBox TextWrapping="Wrap" Grid.Column="1" VerticalAlignment="Top" Margin="0,0,0,15" Padding="3" Text="{Binding memberDetail.address, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                        <ComboBox Grid.Column="1" Grid.Row="1" VerticalAlignment="Top" Margin="0,0,0,15" ItemsSource="{Binding provinceList}" SelectedValue="{Binding selectedProvince, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" DisplayMemberPath="provincename"/>
+                        <ComboBox Grid.Column="1" Grid.Row="2" VerticalAlignment="Top" Margin="0,0,0,15" ItemsSource="{Binding townList}" SelectedValue="{Binding selectedTown, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" DisplayMemberPath="townname"/>
+                        <ComboBox Grid.Column="1" Grid.Row="3" VerticalAlignment="Top" Margin="0,0,0,15" ItemsSource="{Binding barangayList}" SelectedValue="{Binding selectedBarangay, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" DisplayMemberPath="barangayname"/>
+                    </Grid>
+                </Border>
+            </StackPanel>
+        </ScrollViewer>
+        <ScrollViewer Grid.Column="2" Grid.Row="1" Margin="10,0,0,0" VerticalScrollBarVisibility="Auto">
+            <StackPanel Margin="0,0,5,0">
+                <Border Margin="0,0,0,10">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="3*"/>
+                            <ColumnDefinition Width="4*"/>
+                        </Grid.ColumnDefinitions>
+                        <StackPanel Margin="0" Orientation="Vertical">
+                            <Image x:Name="image" HorizontalAlignment="Left" Height="150" VerticalAlignment="Top" Width="150" Source="{Binding memberInfo.image, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="0,0,0,5"/>
+                            <Button Content="select photo" VerticalAlignment="Top" Margin="0" Command="{Binding addPhotoCommand}" Style="{DynamicResource btnCommand}" Foreground="White" Width="{Binding Width, ElementName=image}" HorizontalAlignment="Left" />
+                        </StackPanel>
+                        <StackPanel Margin="10,0,0,0" Orientation="Vertical" Grid.Column="1">
+                            <Image x:Name="image1" Margin="0,45,0,40" Source="{Binding memberInfo.sign, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" VerticalAlignment="Top" Width="200" Height="70"/>
+                            <Button Content="select signature" VerticalAlignment="Top" Command="{Binding addSignCommand}" Style="{DynamicResource btnCommand}" Foreground="White" Width="{Binding Width, ElementName=image1}" HorizontalAlignment="Left" />
+                        </StackPanel>
+                    </Grid>
+                </Border>
+                <Border Margin="0,20,0,0">
+                	<Grid>
+                		<Grid.RowDefinitions>
+                			<RowDefinition/>
+                			<RowDefinition/>
+                			<RowDefinition/>
+                			<RowDefinition/>
+                			<RowDefinition/>
+                			<RowDefinition/>
+                			<RowDefinition/>
+                			<RowDefinition/>
+                		</Grid.RowDefinitions>
+                		<Grid.ColumnDefinitions>
+                			<ColumnDefinition/>
+                			<ColumnDefinition Width="2*"/>
+                		</Grid.ColumnDefinitions>
+                		<TextBlock TextWrapping="Wrap" Text="Occupation" Margin="0" VerticalAlignment="Center"/>
+                		<TextBlock TextWrapping="Wrap" Text="Religion" Grid.Row="1" VerticalAlignment="Center"/>
+                		<TextBlock TextWrapping="Wrap" Text="Phone" Grid.Row="2" VerticalAlignment="Center"/>
+                		<TextBlock TextWrapping="Wrap" Text="Citizenship" Grid.Row="3" VerticalAlignment="Center"/>
+                		<TextBlock TextWrapping="Wrap" Text="Education" Grid.Row="4" VerticalAlignment="Center"/>
+                		<TextBlock TextWrapping="Wrap" Text="Skills" Grid.Row="5" VerticalAlignment="Center"/>
+                		<TextBox TextWrapping="Wrap" Grid.Column="1" VerticalAlignment="Top" Margin="0,0,0,15" Padding="3" Text="{Binding memberInfo.occupation, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                		<TextBox TextWrapping="Wrap" Grid.Column="1" Grid.Row="1" VerticalAlignment="Top" Margin="0,0,0,15" Padding="3" Text="{Binding memberInfo.religion, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                		<TextBox TextWrapping="Wrap" Grid.Column="1" Grid.Row="2" VerticalAlignment="Top" Margin="0,0,0,15" Padding="3" Text="{Binding memberInfo.phone, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                		<TextBox TextWrapping="Wrap" Grid.Column="1" Grid.Row="3" VerticalAlignment="Top" Margin="0,0,0,15" Padding="3" Text="{Binding memberInfo.citizenship, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                		<TextBox TextWrapping="Wrap" Grid.Column="1" Grid.Row="4" VerticalAlignment="Top" Margin="0,0,0,15" Padding="3" Text="{Binding memberInfo.education, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                		<TextBox TextWrapping="Wrap" Grid.Column="1" Grid.Row="5" VerticalAlignment="Top" Padding="3" Text="{Binding memberInfo.skills, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="0,0,0,15"/>
+                	</Grid>
+
+                </Border>
+            </StackPanel>
+
+        </ScrollViewer>
+        <StackPanel Grid.Column="1" Grid.Row="2" Grid.ColumnSpan="2" FlowDirection="RightToLeft" Orientation="Horizontal">
+            <Button Content="save" Command="{Binding addMemberCommand}" Style="{DynamicResource btnCommand}" Width="64" Height="64" Margin="0,0,5,0"/>
+            <Button Content="clear" Command="{Binding clearMemberCommand}" Style="{DynamicResource btnCommand}" Width="64" Height="64" Margin="0,0,5,0"/>
+        </StackPanel>
+
+    </Grid>
+</UserControl>
